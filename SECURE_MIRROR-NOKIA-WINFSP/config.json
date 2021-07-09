@@ -1,0 +1,219 @@
+{
+	"Folders": [
+		{
+			"Path": "C:/Users/Pepito/Documents/",
+			"MountPoint": "F",
+			"Name": "PepitoDocuments (dokan)",
+			"Driver": "Dokan",
+			"Protection": {
+				"OpTable": "Table1",
+				"ChallengeEqGroups": ["Group1"],
+				"Cipher": "simple"
+			}
+		},
+		{
+			"Path": "C:/Users/Pepito/",
+			"MountPoint": "G",
+			"Name": "Pepito (winfsp)",
+			"Driver": "WinFSP",
+			"Protection": {
+				"OpTable": "Table1",
+				"ChallengeEqGroups": ["Group1","Group2"],
+				"Cipher": "AES-128bit"
+			}
+		},
+		{
+			"Path": "C:/Users/Pepito/OneDrive/cosa1/",
+			"MountPoint": "H",
+			"Name": "Cosa1 (dokan)",
+			"Driver": "Dokan",
+			"Protection": {
+				"OpTable": "Table1",
+				"ChallengeEqGroups": ["Group1","Group2"],
+				"Cipher": "simple"
+			}
+		},
+		{
+			"Path": "C:/Users/Pepito/OneDrive/cosa2/",
+			"MountPoint": "I",
+			"Name": "Cosa2 (dokan)",
+			"Driver": "Dokan",
+			"Protection": {
+				"OpTable": "Table1",
+				"ChallengeEqGroups": ["Group1","Group2"],
+				"Cipher": "AES-128bit"
+			}
+		}
+	],
+
+	"Pendrive": {
+		"MountPoints": "LMNOPQRSTUVWXY",
+		"Driver": "WinFSP",
+		"Protection": {
+			"OpTable": "Table2",
+			"ChallengeEqGroups": ["Group1","Group2"],
+			"Cipher": "AES-128bit"
+		}
+	},
+
+	"ParentalControl": [
+		{
+			"Folder": "C:/Users/Pepito/Documents/playboy_files/",
+			"Users": ["Pepito", "Admin"],
+			"ChallengeEqGroups": ["GroupParental1"]
+		},
+		{
+			"Folder": "C:/Users/Pepito/Documents/TOP_SECRET/",
+			"Users": ["Pepito", "Admin"],
+			"ChallengeEqGroups": ["GroupParental2"]
+		}
+	],
+
+	"SyncFolders": [
+		"C:/Users/Pepito/Google Drive/",
+		"C:\\Users/./Pepito/OneDrive/..\\OneDrive"
+	],
+
+	"OperativeTables": {
+		"Table1": [
+			{
+				"AppType": "BROWSER",
+				"READ": "CIPHER",
+				"WRITE": "NOTHING"
+			},
+			{
+				"AppType": "MAILER",
+				"READ": "CIPHER",
+				"WRITE": "DECIPHER"
+			},
+			{
+				"AppType": "ANY",
+				"READ": "NOTHING",
+				"WRITE": "NOTHING"
+			}
+		],
+		"Table2": [
+			{
+				"AppType": "ANY",
+				"READ": "DECIPHER",
+				"WRITE": "CIPHER"
+			}
+		]
+	},
+
+	"Apps": [
+		{
+			"AppPath": "C:/Program Files/Google/Chrome/Application/",
+			"AppName": "chrome.exe",
+			"AppType": "BROWSER"
+		},
+		{
+			"AppPath": "C:/Program Files (x86)/Microsoft/Edge/Application",
+			"AppName": "msedge.exe",
+			"AppType": "MAILER"
+		},
+		{
+			"AppPath": "C:\\Windows",
+			"AppName": "notepad.exe",
+			"AppType": "ANY"
+		},
+		{
+			"AppPath": "C:/Program Files/Sublime Text 3",
+			"AppName": "sublime_text.exe",
+			"AppType": "ANY"
+		}
+	],
+
+	"ChallengeEqGroups": {
+		"Group1": {
+			"ChallengeList": [
+				{
+					"FileName": "simple_challenge.dll",
+					"Description": "Here goes the description",
+					"Props": "",
+					"Requirements": "none"
+				},
+				{
+					"FileName": "time_challenge.dll",
+					"Description": "The challenge checks if it working time.",
+					"Props": "one=1,two=2",
+					"Requirements": "none"
+				}
+			]
+		},
+		"Group2": {
+			"ChallengeList": [
+				{
+					"FileName": "wall_pattern.dll",
+					"Description": "This challenge looks for a certain pattern in the wall.",
+					"Props": "pattern_type=4",
+					"Requirements": "camera"
+				},
+				{
+					"FileName": "tone_background.dll",
+					"Description": "Checks the existence of an inaudible tone in the background.",
+					"Props": "freq=40000hz",
+					"Requirements": "microphone"
+				}
+			]
+		},
+		"GroupParental1": {
+			"ChallengeList": [
+				{
+					"FileName": "set_key_1.dll",
+					"Description": "Always set the key to true.",
+					"Props": "",
+					"Requirements": "none"
+				}
+			]
+		},
+		"GroupParental2": {
+			"ChallengeList": [
+				{
+					"FileName": "check_age.dll",
+					"Description": "Checks the age of the user using the pc is higher or equal to the given as parameter.",
+					"Props": "min_age=18",
+					"Requirements": "camera"
+				}
+			]
+		}
+	},
+
+	"Ciphers": {
+		"simple": {
+			"FileName": "simple_cipher.dll",
+			"BlockSize": 0,
+			"Custom": ""
+		},
+		"AES-128bit": {
+			"FileName": "AES128.dll",
+			"BlockSize": 128,
+			"Custom": ""
+		},
+		"AES-128bitv2": {
+			"FileName": "AES128.dll",
+			"BlockSize": 128,
+			"Custom": "version=2"
+		},
+		"RSA": {
+			"FileName": "RSA.dll",
+			"BlockSize": 0,
+			"Custom": ""
+		}
+	},
+
+	"ThirdParties": {
+		"Izertis":{
+			"Cipher": "RSA",
+			"Key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUpwmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQAB"
+		},
+		"Optiva":{
+			"Cipher": "RSA",
+			"Key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgohxrggmfhx6H1w+U7PQLW8MlFGQpPANzNoxH8x/ar4y1BqNm97k7QYUJcDxLZ8x97xwbsF21GFIzDRBzPI7bzl0WORSh14BsSK5piB1JCAD8wlpuFy/sXnL/7jj2jU2oDCI5ITG+OdHE41jXVVbfTrQ2+NpIg6OXwWXE91B5CwIDAQAB"
+		},
+		"Others":{
+			"Cipher": "RSA",
+			"Key": ""
+		}
+	}
+}
